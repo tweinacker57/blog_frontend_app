@@ -5,7 +5,8 @@ import Test from '../views/Test.vue'
 import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
-import Index from "../views/PostsIndex.vue";
+import PostsIndex from "../views/PostsIndex.vue";
+import PostsNew from "../views/PostsNew.vue";
 
 
 
@@ -40,7 +41,12 @@ const routes = [
   {
     path: "/posts",
     name: "posts-index",
-    component: Index
+    component: PostsIndex
+  },
+  {
+    path: "/posts/new",
+    name: "posts-new",
+    component: PostsNew
   },
   {
     path: '/about',
