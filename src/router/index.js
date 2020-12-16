@@ -5,6 +5,7 @@ import Test from '../views/Test.vue'
 import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
+import Index from "../views/PostsIndex.vue";
 
 
 
@@ -35,6 +36,11 @@ const routes = [
     path: "/logout",
     name: "Logout",
     component: Logout
+  },
+  {
+    path: "/posts",
+    name: "posts-index",
+    component: Index
   },
   {
     path: '/about',
