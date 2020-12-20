@@ -13,7 +13,10 @@
       <div class="form-group">
         <label>Body:</label>
         <input type="text" class="form-control" v-model="body">
-        <p> {{ 500 - body.length }} characters remaining</p>
+        <small> {{ 500 - body.length }} characters remaining</small>
+        <br>
+        <small v-if="body.length < 50">Post is too short</small>
+        <small v-if="body.length > 500">Post is too long</small>
       </div>
       <div class="form-group">
         <label>Image:</label>
