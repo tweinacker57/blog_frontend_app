@@ -12,17 +12,17 @@
         <a class="nav-link" href="/posts">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="/posts/new">Create a post</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <li v-if="!isLoggedIn()"><a class="dropdown-item" href="/login">Login</a></li>
+          <li v-if="isLoggedIn()"><a class="dropdown-item" href="/logout">Logout</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <li v-if="!isLoggedIn()"><a class="dropdown-item" href="/signup">Signup</a></li>
         </div>
       </li>
       <li class="nav-item">
@@ -44,3 +44,17 @@ body {
   font-family: "Courier New", Courier, monospace;
 }
 </style>
+
+<script>
+export default {
+  methods: {
+    isLoggedIn: function () {
+      if (localStorage.getItem("jwt")) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+};
+</script> 
