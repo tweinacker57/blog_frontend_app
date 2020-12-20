@@ -3,6 +3,8 @@
     <h1>{{ message }}</h1>
     <div v-for="post in posts">
       <p>{{ post.title }}</p>
+      <router-link v-bind:to="'/posts/' + post.id">
+      </router-link>
     </div>  
   </div>
 </template>

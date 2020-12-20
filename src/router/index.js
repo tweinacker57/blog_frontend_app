@@ -8,6 +8,7 @@ import Logout from "../views/Logout.vue";
 import PostsIndex from "../views/PostsIndex.vue";
 import PostsNew from "../views/PostsNew.vue";
 import PostsShow from "../views/PostsShow.vue";
+import PostsEdit from "../views/PostsEdit.vue";
 
 
 
@@ -48,6 +49,11 @@ const routes = [
     path: "/posts/new",
     name: "posts-new",
     component: PostsNew
+  },
+  {
+    path: "/posts/:id/edit",
+    name: "posts-edit",
+    component: PostsEdit
   },
   {
     path: "/posts/:id",

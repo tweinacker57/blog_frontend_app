@@ -1,23 +1,22 @@
 <template>
 
-  <div class="posts-new">
+  <div class="posts-edit">
     <form v-on:submit.prevent="submit()">
-      <h1>Make a new Post</h1>
+      <h1>Edit a Post</h1>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
       <div class="form-group">
         <label>Title:</label> 
-        <input type="text" class="form-control" v-model="title">
+        <input type="text" class="form-control" v-model="post.title">
       </div>
       <div class="form-group">
         <label>Body:</label>
-        <input type="text" class="form-control" v-model="body">
-        <p> {{ 500 - body.length }} characters remaining</p>
+        <input type="text" class="form-control" v-model="post.body">
       </div>
       <div class="form-group">
         <label>Image:</label>
-        <input type="text" class="form-control" v-model="image">
+        <input type="text" class="form-control" v-model="post.image">
       </div>
       <input type="submit" class="btn btn-primary" value="Submit">
     </form>
@@ -29,21 +28,23 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      title: "",
-      body: "",
-      image: "",
+      posts: {},
       errors: [],
     };
+  },
+  created: function () {
+    console.log("in the created");
+    this.getPostData;
   },
   methods: {
     submit: function () {
       var params = {
-        title: this.title,
-        body: this.body,
-        image: this.image,
+        title: this.post.title,
+        body: this.post.body,
+        image: this.post.image,
       };
       axios
-        .post("/api/posts", params)
+        .patch("/api/posts" + this.$router.params.id, params)
         .then((response) => {
           this.$router.push("/posts");
         })
@@ -51,6 +52,12 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
+  },
+  getPostData: function () {
+    axios.get("/api/posts" + this.$router.params.id).then((response) => {
+      console.log(response.data);
+      this.post = response.data;
+    });
   },
 };
 </script>
